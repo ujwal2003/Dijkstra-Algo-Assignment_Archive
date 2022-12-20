@@ -10,6 +10,7 @@ Graph::Graph(bool _isDirected=false) {
 	isDirected = _isDirected;
 }
 
+//adds edge to graph
 void Graph::addEdge(int v1, int v2, double weight) {
 	if(isDirected) {
 		adjList[v1][v2] = weight;
@@ -19,6 +20,7 @@ void Graph::addEdge(int v1, int v2, double weight) {
 	}
 }
 
+//prints graph to console
 void Graph::printGraph() {
 	for(auto edge: adjList) {
 		string offset = (edge.first < 10) ? " " : "";

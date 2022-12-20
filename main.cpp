@@ -1,7 +1,52 @@
 #include <iostream>
+#include <map>
+#include <set>
+#include <float.h>
+#include <utility>
+
 #include "graph.h"
 
+#define INF DBL_MAX
+
 using namespace std;
+
+struct distVal {
+	double distance = INF;
+};
+
+void showShortestDistance(Graph &g, int src, int dest) {
+	map<int, bool> visited;
+	map<int, distVal> dist;
+	
+	dist[src].distance = 0.0;
+	set<pair<double, int>> pQ;
+	
+	pair<double, int> ed(0.0, src);
+	pQ.insert(ed);
+	
+	while(!pQ.empty()) {
+		auto top = *(pQ.begin());
+		int indx = top.second;
+		double val = top.first;
+		pQ.erase(top);
+		visited[indx] = true;
+		
+		if(dist[indx].distance < val)
+			continue;
+		for(auto edge: g.adjList[indx]) {
+			if(visited[edge.first]){continue;}
+			
+			double newDist = dist[indx].distance + edge.second;
+			if(newDist < dist[edge.first].distance) {
+				dist[edge.first].distance = newDist;
+				pair<double, int> newEd(newDist, edge.first);
+				pQ.insert(newEd);
+			}
+		}
+	}
+	
+	cout << dist[dest].distance;
+}
 
 int main(int argc, char *argv[]) {
 	Graph g(true);
@@ -21,5 +66,6 @@ int main(int argc, char *argv[]) {
 	cout << "Representation of Graph:" << endl;
 	g.printGraph();
 	
-	cout << endl << "shortest distance from node 2 to 6 is:" << endl;
+	cout << endl << "shortest distance from node 3 to 6 is: ";
+	showShortestDistance(g, 3, 6);
 }

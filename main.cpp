@@ -18,5 +18,8 @@ int main(int argc, char *argv[]) {
 	g.addEdge(10, 9, 1.9);
 	g.addEdge(11, 2, 1.4);
 	
+	cout << "Representation of Graph:" << endl;
 	g.printGraph();
+	
+	cout << endl << "shortest distance from node 2 to 6 is:" << endl;
 }

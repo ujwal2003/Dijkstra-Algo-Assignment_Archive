@@ -8,7 +8,7 @@ using namespace std;
 
 class Graph {
 	private:
-		bool isDirected;
+		bool isDirected; //directed or undirected graph
 	
 	public:
 		map<int, map<int, double>> adjList;

@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//set default distance to infinity
 struct distVal {
 	double distance = INF;
 };
@@ -18,6 +19,7 @@ void showShortestDistance(Graph &g, int src, int dest) {
 	map<int, bool> visited;
 	map<int, distVal> dist;
 	
+	//perhaps not the best way to make a priority queue
 	dist[src].distance = 0.0;
 	set<pair<double, int>> pQ;
 	
